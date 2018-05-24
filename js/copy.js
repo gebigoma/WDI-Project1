@@ -96,7 +96,7 @@ function entireDeck() {
 }
 
 function countDownEntireDeck() { 
-  var counter = 3;
+  var counter = 5;
   entireDeck()
   activateCards()
   var countDown = setInterval(
@@ -107,11 +107,8 @@ function countDownEntireDeck() {
       if(counter === 0) {
         clearInterval(countDown)        
         $('.card.selected').each(function(idx, card) {
-          debugger
           var cardName = $(card).attr('data-name')
-// push player2 cards to separate array
           if(cardsInPlay.includes(cardName)) {
-// reset for 2nd player, still showing same deck and shuffled cards
             increaseScore()
           }
         })       
@@ -119,7 +116,6 @@ function countDownEntireDeck() {
       displayScore(currentPlayer.score);
       switchTurns();
       $startButton.show();
-      // shuffle(allImages)
     } 
     }, 1000)
 }
@@ -135,9 +131,9 @@ function startTurn() {
 }
 
 function startGame(){
+  clearScoreAndTimer()
   $instructionsButton.hide()
   $startButton.hide();
-  // debugger
   startTurn();
 }
 
@@ -158,8 +154,7 @@ function switchTurns() {
     currentPlayer = player2
     scoreBoard = 0;
   } else {
-    // alert("END OF GAME...")
-    console.log("END GAME")
+    compareScores()
   }
 }
 
@@ -168,14 +163,31 @@ $startButton.on('click', startGame)
 function displayScore(score) {
   $currentPlayer.html(`${currentPlayer.name} Score: ${score} matched cards`)
 }
+function clearScoreAndTimer() {
+  $currentPlayer.text("")
+  $timer.text("")
+
+}
+
 function increaseScore() {
   currentPlayer.score++
 }
-
-function compareScores(){
-  // compare player1 and player2 scores and declare winner
-  // make 2 arrays then compare arrays? if player1[] > player2, player1 wins, else if player 2 > player1, player 2 wins
-  }
+ 
+ function compareScores() {
+   if (player1.score > player2.score && player1.score != player2.score) {
+      setTimeout(function(){
+        alert("Player 1 Wins!")
+      }, 500)
+    } else if (player2.score > player1.score && player2.score != player1.score) {
+      setTimeout(function(){
+        alert("Player 2 Wins!")
+      }, 500)
+   } else {
+      setTimeout(function(){
+        alert("Players Tie")
+      }, 500) 
+   }
+ }
   
 
 // match the players deck to entireDeck, score for each pair matched. 
