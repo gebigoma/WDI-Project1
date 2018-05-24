@@ -56,13 +56,13 @@ var slicedDeck = allImages.slice(0, 2);
 
 // width and height in arguments not working
 function showCard(name, url, animation = 'fade-in', width, height) {
-  var $imageElement = $('<img>');
-  $imageElement.attr("src", url)
-  $imageElement.attr("data-name", name)
-  $imageElement.width(200) 
-  $imageElement.height(200)
-  $container.append($imageElement)
-  $('img').addClass(['card', animation])
+    var $imageElement = $('<img>');
+    $imageElement.attr("src", url)
+    $imageElement.attr("data-name", name)
+    $imageElement.width(200) 
+    $imageElement.height(200)
+    $container.append($imageElement)
+    $('img').addClass(['card', animation])
 }
 
 function removeAllCards () {
@@ -113,7 +113,9 @@ function countDownEntireDeck() {
           }
         })       
       removeAllCards() 
-      switchTurns()
+      switchTurns();
+      $instructionsButton.show()
+      $startButton.show();
       console.log("second", currentPlayer)
       // playerDeck()
 
@@ -121,26 +123,18 @@ function countDownEntireDeck() {
     }, 1000)
 }
 
-function startGame(){
-  $timer.hide()
+function startTurn() {
   playerDeck()
-  console.log(currentPlayer)
-  // TOTAL NUMBER OF TURNS
-  var turnsLeft = 2;
-  // THIS IS A SET INTERVAL THAT RUNS EVERY THREE SECONDS
-  // WHEN THE TOTAL TURNS LEFT IS AT 0, CLEAR THE INTERVAL
-  var turn = setInterval(function(){
+  var turn = setTimeout(function(){
     removeAllCards()
     countDownEntireDeck()
-    // DECREASE THE TURNSLEFT BY 1
-    turnsLeft--
-    if (turnsLeft === 0) {
-      clearInterval(turn);
-    }
-
   }, 3000)
+}
+
+function startGame(){
   $instructionsButton.hide()
-  $startButton.hide()
+  $startButton.hide();
+  startTurn();
 }
 
 var player1 = {
