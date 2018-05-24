@@ -18,6 +18,7 @@ var allImages = [
   {name: "pasta", cardImage: "images/Image4.jpg"}, 
 ]
 var cardsInPlay = [];
+var cardsInPlay2 = [];
 
 var $startText = $('#start-text')
 var $instructionsButton = $('button.instructions')
@@ -26,11 +27,12 @@ var $firstGameboard = $('#first-gameboard')
 var $container = $('#container')
 var $timer = $('#timer')
 var $score = $('#score')
+var $currentPlayer = $('#current-player')
 var scoreBoard = 0
-
 
 $startText.hide()
 $timer.hide()
+$score.hide()
 
 $instructionsButton.click(function(evt) {
   evt.preventDefault()
@@ -53,6 +55,10 @@ function shuffle(array) {
 var shuffleAll = shuffle(allImages);
 
 var slicedDeck = allImages.slice(0, 2);
+
+function shuffleAllImages() {
+  shuffle(allImages);
+}
 
 // width and height in arguments not working
 function showCard(name, url, animation = 'fade-in', width, height) {
@@ -87,12 +93,12 @@ function playerDeck() {
 }
 
 function entireDeck() {
+  // not shuffling for 2nd player
   shuffle(allImages)
   for(var i = 0; i < shuffleAll.length; i += 1) {
     showCard(shuffleAll[i].name, shuffleAll[i].cardImage)
   }
 }
-
 
 function countDownEntireDeck() { 
   var counter = 3;
@@ -107,19 +113,17 @@ function countDownEntireDeck() {
         clearInterval(countDown)        
         $('.card.selected').each(function(idx, card) {
           var cardName = $(card).attr('data-name')
-          console.log(cardName)
+// push player2 cards to separate array
           if(cardsInPlay.includes(cardName)) {
-            scoreBoard ++
+// reset for 2nd player, still showing same deck and shuffled cards
+            increaseScore()
           }
         })       
       removeAllCards() 
       switchTurns();
-      $instructionsButton.show()
       $startButton.show();
-      console.log("second", currentPlayer)
-      // playerDeck()
-
-      } 
+      // shuffle(allImages)
+    } 
     }, 1000)
 }
 
@@ -134,6 +138,7 @@ function startTurn() {
 function startGame(){
   $instructionsButton.hide()
   $startButton.hide();
+  // debugger
   startTurn();
 }
 
@@ -157,37 +162,24 @@ function switchTurns() {
   }
 }
 
-
-  // and then needs to switch, right now is running both 
-  // switchTurns()
-  // console.log("second")
-  // console.log(currentPlayer)}
-
 $startButton.on('click', startGame)
-
-
-function checkForMatch() {
-  if (cardsInPlay[0] === cardsInPlay[3]) {
-    alert("yay!");
-  } else {
-    alert ("nay");
-  }
-}
 
 function increaseScore() {
   scoreBoard++
-  $score.html(`${scoreBoard} matched cards`)
+  $currentPlayer.html(`Current Player Score: ${scoreBoard} matched cards`)
 }
 
+function compareScores(){
+  // compare player1 and player2 scores and declare winner
+  // make 2 arrays then compare arrays? if player1[] > player2, player1 wins, else if player 2 > player1, player 2 wins
+  }
+  
 
 // match the players deck to entireDeck, score for each pair matched. 
 // show total matched cards score
 // run player2 same as player1
 // compare player scores and declare winner
 // reset game
-
-// where do i run the switch function??
-// how to end game and restart again
 
 
 
