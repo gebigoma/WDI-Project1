@@ -168,11 +168,10 @@ function switchTurns() {
 $startButton.on('click', startGame)
 
 function displayScore(score) {
-  $currentPlayer.html(`Current Player Score: ${score} matched cards`)
+  $currentPlayer.html(`${currentPlayer.name} Score: ${score} matched cards`)
 }
 function increaseScore() {
   currentPlayer.score++
-  // $currentPlayer.html(`Current Player Score: ${currentPlayer.score} matched cards`)
 }
 
 function compareScores(){
