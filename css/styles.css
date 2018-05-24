@@ -7,6 +7,17 @@ body {
   min-height: 100%;
 }
 
+nav {
+  height: 20px;
+}
+.selected {
+  opacity: 0.3;
+}
+
+.card {
+  display: inline;
+  float: left;
+}
 #start-page {
   position: relative;
 }
@@ -24,3 +35,43 @@ body {
   width: 100%;
 }
 
+.stored-images {
+  display: none;
+}
+
+#gameboard-first {
+  height: 100%
+}
+
+.stretch {
+  animation: 
+    stretch
+    1.5s
+    ease-out
+    0s
+    alternate
+    infinite
+    none
+    running;
+}
+@keyframes stretch {
+  30% {
+    transform: scale(1)
+  }
+}
+
+.fade-in {
+  animation: 
+    stretch
+    2s
+    ease-out
+    0s
+    alternate
+    none
+    running;
+}
+@keyframes stretch {
+  0% {
+    transform: scale(.3)
+  }
+}
