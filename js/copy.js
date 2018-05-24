@@ -17,9 +17,8 @@ var allImages = [
   {name: "oatmeal", cardImage: "images/Image3.jpg"},
   {name: "pasta", cardImage: "images/Image4.jpg"}, 
 ]
-var cardsInPlay = [];
-var cardsInPlay2 = [];
 
+let cardsInPlay;
 var $startText = $('#start-text')
 var $instructionsButton = $('button.instructions')
 var $startButton = $('.start-game')
@@ -52,10 +51,6 @@ function shuffle(array) {
   return array;
 }
 
-var shuffleAll = shuffle(allImages);
-
-var slicedDeck = allImages.slice(0, 2);
-
 function shuffleAllImages() {
   shuffle(allImages);
 }
@@ -85,7 +80,8 @@ function activateCards () {
   })
 }
 
-function playerDeck() {
+function playerDeck(slicedDeck) {
+  cardsInPlay = [];
   for (var i = 0; i < slicedDeck.length; i += 1) {
     cardsInPlay.push(slicedDeck[i].name);
     showCard(slicedDeck[i].name, slicedDeck[i].cardImage, 'stretch')
@@ -93,8 +89,7 @@ function playerDeck() {
 }
 
 function entireDeck() {
-  // not shuffling for 2nd player
-  shuffle(allImages)
+  var shuffleAll = shuffle(allImages)
   for(var i = 0; i < shuffleAll.length; i += 1) {
     showCard(shuffleAll[i].name, shuffleAll[i].cardImage)
   }
@@ -112,6 +107,7 @@ function countDownEntireDeck() {
       if(counter === 0) {
         clearInterval(countDown)        
         $('.card.selected').each(function(idx, card) {
+          debugger
           var cardName = $(card).attr('data-name')
 // push player2 cards to separate array
           if(cardsInPlay.includes(cardName)) {
@@ -129,10 +125,12 @@ function countDownEntireDeck() {
 }
 
 function startTurn() {
-  playerDeck()
+  var shuffleAll = shuffle(allImages);
+  var slicedDeck = allImages.slice(0, 2);
+  playerDeck(slicedDeck)
   var turn = setTimeout(function(){
     removeAllCards()
-    countDownEntireDeck()
+    countDownEntireDeck(shuffleAll)
   }, 3000)
 }
 
