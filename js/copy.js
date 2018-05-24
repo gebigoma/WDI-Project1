@@ -22,6 +22,7 @@ let cardsInPlay;
 var $startText = $('#start-text')
 var $instructionsButton = $('button.instructions')
 var $startButton = $('.start-game')
+var $playerTwoStartButton = $('.player-2-start') 
 var $firstGameboard = $('#first-gameboard')
 var $container = $('#container')
 var $timer = $('#timer')
@@ -32,6 +33,7 @@ var scoreBoard = 0
 $startText.hide()
 $timer.hide()
 $score.hide()
+$playerTwoStartButton.hide()
 
 $instructionsButton.click(function(evt) {
   evt.preventDefault()
@@ -115,7 +117,7 @@ function countDownEntireDeck() {
       removeAllCards();
       displayScore(currentPlayer.score);
       switchTurns();
-      $startButton.show();
+      $playerTwoStartButton.show();
     } 
     }, 1000)
 }
@@ -134,6 +136,7 @@ function startGame(){
   clearScoreAndTimer()
   $instructionsButton.hide()
   $startButton.hide();
+  $playerTwoStartButton.hide();
   startTurn();
 }
 
@@ -159,6 +162,7 @@ function switchTurns() {
 }
 
 $startButton.on('click', startGame)
+$playerTwoStartButton.on('click', startGame)
 
 function displayScore(score) {
   $currentPlayer.html(`${currentPlayer.name} Score: ${score} matched cards`)
