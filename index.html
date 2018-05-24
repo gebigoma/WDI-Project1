@@ -10,29 +10,34 @@
     src="https://code.jquery.com/jquery-3.3.1.min.js"
     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,700,900" rel="stylesheet">
     <title>Project 1</title>
 </head>
 <body>
-    <h1>Game Title</h1>
+    <h1 id="title">Memory Game</h1>
     <nav>
         <span id="score">Score</span>
         <span id="timer">Ready</span>
+        <span id="current-player"></span>
     </nav>
-    <div id="container">
+    <div id="container"></div>
     <div id="start-page">
         <p id="start-text">
-        Here is an instructional paragraph. Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto tenetur officiis iste! Magnam eum dolore, voluptatibus dolores eos recusandae dignissimos, architecto modi rem a nam doloribus veritatis necessitatibus, quo libero?
+           Match the pictures! 
+           <br><br> 
+           This is a 2 player game: To begin, you will be shown a random collection of pictures that you must remember! The next screen will take you to a larger collection of images, with your pictures hidden within. Try to find your pictures. 
+           <br><br>
+           The player with the most matched pictures win the game! 
+           <br><br>
+           You don't have forever to look at the pictures, time's ticking. Tick tock tick tock.. 
         </p>
         <div id="start-buttons">
             <button class="instructions">Instructions</button>
             <button class="start-game">Start</button>
             <button class="player-2-start">Player 2 Start</button>
         </div>
-        <div>
-            <span id="current-player"></span>
-        </div>
     </div>
-</div>
+
    <script src="js/copy.js"></script> 
 </body>
 

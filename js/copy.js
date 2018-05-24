@@ -16,6 +16,7 @@ var allImages = [
   {name: "pudding", cardImage: "images/Image2.jpg"},
   {name: "oatmeal", cardImage: "images/Image3.jpg"},
   {name: "pasta", cardImage: "images/Image4.jpg"}, 
+  {name: "gif", cardImage: "https://i.giphy.com/media/XGnWMiVXL87Xa/giphy.webp"}
 ]
 
 let cardsInPlay;
@@ -87,6 +88,7 @@ function playerDeck(slicedDeck) {
   for (var i = 0; i < slicedDeck.length; i += 1) {
     cardsInPlay.push(slicedDeck[i].name);
     showCard(slicedDeck[i].name, slicedDeck[i].cardImage, 'stretch')
+    // $(this).fadeOut(500) doesnt work
   }
 }
 
@@ -98,12 +100,14 @@ function entireDeck() {
 }
 
 function countDownEntireDeck() { 
-  var counter = 5;
+  var counter = 10;
   entireDeck()
   activateCards()
+  $timer.show()
+  debugger
+
   var countDown = setInterval(
     function() {
-      $timer.show()
       counter --
       $timer.html(`${counter} seconds`)
       if(counter === 0) {
@@ -124,19 +128,21 @@ function countDownEntireDeck() {
 
 function startTurn() {
   var shuffleAll = shuffle(allImages);
-  var slicedDeck = allImages.slice(0, 2);
+  var slicedDeck = allImages.slice(0, 5);
   playerDeck(slicedDeck)
   var turn = setTimeout(function(){
     removeAllCards()
     countDownEntireDeck(shuffleAll)
-  }, 3000)
+  }, 4000)
 }
 
 function startGame(){
+  $startText.hide()
   clearScoreAndTimer()
   $instructionsButton.hide()
   $startButton.hide();
   $playerTwoStartButton.hide();
+  // debugger
   startTurn();
 }
 
@@ -165,12 +171,11 @@ $startButton.on('click', startGame)
 $playerTwoStartButton.on('click', startGame)
 
 function displayScore(score) {
-  $currentPlayer.html(`${currentPlayer.name} Score: ${score} matched cards`)
+  $currentPlayer.html(`${currentPlayer.name}: ${score} matched pictures`)
 }
 function clearScoreAndTimer() {
   $currentPlayer.text("")
   $timer.text("")
-
 }
 
 function increaseScore() {
