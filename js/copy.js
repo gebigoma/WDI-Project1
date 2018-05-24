@@ -119,7 +119,8 @@ function countDownEntireDeck() {
             increaseScore()
           }
         })       
-      removeAllCards() 
+      removeAllCards();
+      displayScore(currentPlayer.score);
       switchTurns();
       $startButton.show();
       // shuffle(allImages)
@@ -157,16 +158,21 @@ var currentPlayer = player1
 function switchTurns() {
   if(currentPlayer === player1) {
     currentPlayer = player2
+    scoreBoard = 0;
   } else {
-    alert("END OF GAME...")
+    // alert("END OF GAME...")
+    console.log("END GAME")
   }
 }
 
 $startButton.on('click', startGame)
 
+function displayScore(score) {
+  $currentPlayer.html(`Current Player Score: ${score} matched cards`)
+}
 function increaseScore() {
-  scoreBoard++
-  $currentPlayer.html(`Current Player Score: ${scoreBoard} matched cards`)
+  currentPlayer.score++
+  // $currentPlayer.html(`Current Player Score: ${currentPlayer.score} matched cards`)
 }
 
 function compareScores(){
