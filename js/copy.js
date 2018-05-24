@@ -190,15 +190,6 @@ function increaseScore() {
  }
   
 
-// match the players deck to entireDeck, score for each pair matched. 
-// show total matched cards score
-// run player2 same as player1
-// compare player scores and declare winner
-// reset game
-
-
-
-
 
 
 
