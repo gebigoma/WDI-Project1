@@ -1,22 +1,24 @@
 
 var allImages = [
-  {name: "casserole", cardImage: "images/Image1.jpg"},
-  {name: "pudding", cardImage: "images/Image2.jpg"},
-  {name: "oatmeal", cardImage: "images/Image3.jpg"},
-  {name: "pasta", cardImage: "images/Image4.jpg"},
-  {name: "casserole", cardImage: "images/Image1.jpg"},
-  {name: "pudding", cardImage: "images/Image2.jpg"},
-  {name: "oatmeal", cardImage: "images/Image3.jpg"},
-  {name: "pasta", cardImage: "images/Image4.jpg"},
-  {name: "casserole", cardImage: "images/Image1.jpg"},
-  {name: "pudding", cardImage: "images/Image2.jpg"},
-  {name: "oatmeal", cardImage: "images/Image3.jpg"},
-  {name: "pasta", cardImage: "images/Image4.jpg"},
-  {name: "casserole", cardImage: "images/Image1.jpg"},
-  {name: "pudding", cardImage: "images/Image2.jpg"},
-  {name: "oatmeal", cardImage: "images/Image3.jpg"},
-  {name: "pasta", cardImage: "images/Image4.jpg"}, 
-  {name: "gif", cardImage: "https://i.giphy.com/media/XGnWMiVXL87Xa/giphy.webp"}
+  {name: "angry-cat", cardImage: "https://goo.gl/NBLN3W"},
+  {name: "peace", cardImage: "https://goo.gl/U6yCwN"},
+  {name: "milton", cardImage: "https://goo.gl/xrjR8N"},
+  {name: "no-face", cardImage: "https://goo.gl/zgPxQK"},
+  {name: "ella", cardImage: "https://goo.gl/zKi4QD"},
+  {name: "cartoon", cardImage: "https://goo.gl/sGQkUn"},
+  {name: "coffee-dive", cardImage: "https://goo.gl/9QGf2K"},
+  {name: "moon-river-lady", cardImage: "https://goo.gl/LJQPFj"},
+  {name: "dali-elephant", cardImage: "https://goo.gl/urHihH"},
+  {name: "creepy-smile", cardImage: "https://goo.gl/Nsjc49"},
+  {name: "camera-love", cardImage: "https://goo.gl/Ja3kwM"},
+  {name: "poke-da-bear", cardImage: "https://goo.gl/A15XBy"},
+  {name: "sausage-roll", cardImage: "https://goo.gl/EuiHZa"},
+  {name: "toilet-paper-run", cardImage: "https://goo.gl/aAX2oK"},
+  {name: "creepy-dolls", cardImage: "https://goo.gl/apWhkN"},
+  {name: "frog", cardImage: "https://goo.gl/c9hNsA"}, 
+  {name: "pink-tree", cardImage: "https://goo.gl/Dq289z"},
+  {name: "creepybanana", cardImage: "https://goo.gl/1LcxSQ"},
+ 
 ]
 
 let cardsInPlay;
@@ -58,7 +60,6 @@ function shuffleAllImages() {
   shuffle(allImages);
 }
 
-// width and height in arguments not working
 function showCard(name, url, animation = 'fade-in', width, height) {
     var $imageElement = $('<img>');
     $imageElement.attr("src", url)
@@ -88,7 +89,6 @@ function playerDeck(slicedDeck) {
   for (var i = 0; i < slicedDeck.length; i += 1) {
     cardsInPlay.push(slicedDeck[i].name);
     showCard(slicedDeck[i].name, slicedDeck[i].cardImage, 'stretch')
-    // $(this).fadeOut(500) doesnt work
   }
 }
 
@@ -104,8 +104,6 @@ function countDownEntireDeck() {
   entireDeck()
   activateCards()
   $timer.show()
-  debugger
-
   var countDown = setInterval(
     function() {
       counter --
@@ -128,12 +126,12 @@ function countDownEntireDeck() {
 
 function startTurn() {
   var shuffleAll = shuffle(allImages);
-  var slicedDeck = allImages.slice(0, 5);
+  var slicedDeck = allImages.slice(0, 4);
   playerDeck(slicedDeck)
   var turn = setTimeout(function(){
     removeAllCards()
     countDownEntireDeck(shuffleAll)
-  }, 4000)
+  }, 8000)
 }
 
 function startGame(){
@@ -167,11 +165,8 @@ function switchTurns() {
   }
 }
 
-$startButton.on('click', startGame)
-$playerTwoStartButton.on('click', startGame)
-
 function displayScore(score) {
-  $currentPlayer.html(`${currentPlayer.name}: ${score} matched pictures`)
+  $currentPlayer.html(`${currentPlayer.name} : ${score} matched pictures`)
 }
 function clearScoreAndTimer() {
   $currentPlayer.text("")
@@ -198,7 +193,9 @@ function increaseScore() {
    }
  }
   
-
+ $startButton.on('click', startGame)
+ $playerTwoStartButton.on('click', startGame)
+ 
 
 
 

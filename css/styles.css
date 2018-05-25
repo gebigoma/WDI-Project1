@@ -5,7 +5,7 @@ html, body {
 
 body {
   min-height: 100%;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Unica One', cursive;
 }
 
 #container{
@@ -16,16 +16,18 @@ h1{
   text-align: center;
   margin-bottom: 10px;
   color: #303030;
+  font-size: 45px;
 }
 
 nav {
   display: flex;
   justify-content: space-between;
-  height: 20px;
-  margin: 3px 100px;
+  height: 30px;
+  margin: 3px 125px;
   color: #303030;
   font-size: 20px
 }
+
 .selected {
   opacity: 0.3;
 }
@@ -40,18 +42,22 @@ nav {
 
 #start-text{
   position: absolute;
-  top: 80px;
+  top: 40px;
   margin: 0px 350px;
-  font-size: 18px;
+  font-size: 22px;
   line-height: 30px;
+  letter-spacing: 1px;
 }
 
 button {
-  padding: 5px 10px;
+  padding: 10px 20px;
   border-radius: 7px;
-  font-size: 16px;
-  color: #525252;
+  font-size: 22px;
+  color: #292929;
+  font-family: 'Unica One', cursive;
+  margin: 0 5px;
 }
+
 #start-buttons {
   position: absolute;
   top: 400px;
@@ -62,7 +68,7 @@ button {
 .stretch {
   animation: 
     stretch
-    2s
+    4s
     ease-out
     0s
     alternate
@@ -70,25 +76,41 @@ button {
     none
     running;
 }
-/* @keyframes stretch {
-  50% {
-    transform: scale(.5)
-  }
-} */
 
 .fade-in {
   animation: 
     stretch
-    2s
+    5s
     ease-out
     0s
     alternate
+    infinite
     none
     running;
 }
 @keyframes stretch {
   0% {
-    transform: scale(.3)
+    transform: scale(.1)
   }
 }
 
+#zzz {
+  width: 178px;
+  position: absolute;
+  right: 325px;
+  bottom: 724px;
+}
+
+#zzzzz {
+  width: 178px;
+  position: absolute;
+  left: 400px;
+  bottom: 724px;
+}
+
+#drake {
+  width: 135px;
+  position: absolute;
+  right: 450px;
+  bottom: 665px;
+}
