@@ -1,4 +1,3 @@
-
 var allImages = [
   {name: "angry-cat", cardImage: "https://goo.gl/NBLN3W"},
   {name: "peace", cardImage: "https://goo.gl/U6yCwN"},
@@ -21,7 +20,7 @@ var allImages = [
 
 ]
 
-var $music = $('#music')
+var $music = new Audio("audio/06 Mister Sandman.mp3")
 let cardsInPlay;
 var $startText = $('#start-text')
 var $instructionsButton = $('button.instructions')
@@ -136,7 +135,7 @@ function startTurn() {
 }
 
 function startGame(){
-  // $music.play()
+  $music.play()
   $startText.hide()
   clearScoreAndTimer()
   $instructionsButton.hide()
@@ -169,6 +168,7 @@ function switchTurns() {
 function displayScore(score) {
   $currentPlayer.html(`${currentPlayer.name} : ${score} matched pictures`)
 }
+
 function clearScoreAndTimer() {
   $currentPlayer.text("")
   $timer.text("")
@@ -178,25 +178,26 @@ function increaseScore() {
   currentPlayer.score++
 }
  
- function compareScores() {
-   if (player1.score > player2.score && player1.score != player2.score) {
-      setTimeout(function(){
-        alert("Player 1 Wins!")
-      }, 500)
-    } else if (player2.score > player1.score && player2.score != player1.score) {
-      setTimeout(function(){
-        alert("Player 2 Wins!")
-      }, 500)
-   } else {
-      setTimeout(function(){
-        alert("Players Tie")
-      }, 500) 
-   }
- }
+function compareScores() {
+  if (player1.score > player2.score && player1.score != player2.score) {
+    setTimeout(function(){
+      alert("Player 1 Wins!")
+    }, 500)
+  } else if (player2.score > player1.score && player2.score != player1.score) {
+    setTimeout(function(){
+      alert("Player 2 Wins!")
+    }, 500)
+  } else {
+    setTimeout(function(){
+      alert("Players Tie")
+    }, 500) 
+  }
+}
   
  $startButton.on('click', startGame)
  $playerTwoStartButton.on('click', startGame)
- 
+
+
 
 
 
