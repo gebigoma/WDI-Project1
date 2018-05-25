@@ -1,13 +1,16 @@
-# Project 1 - Memory Game
+# Project 1 - Dream Recall (Memory Game)
 ---
-![Screenshot 1](https://i.imgur.com/W5fBX20.png
+
+URL: <https://gebigoma.github.io/dreamrecall/>
+
+![Screenshot 1](https://i.imgur.com/Aq470GH.png
 "Screenshot_1")
 ![Screenshot 2](https://i.imgur.com/kDuztze.png
 "Screenshot_2")
 ![Screenshot 3](https://i.imgur.com/MKaCz2a.png
  "Screenshot_3")
 
-## Introduction to Memory Game
+## Introduction to Dream Recall
 This game will be testing your memory skills. The player is presented with a collection of images to remember. The screen takes them to a larger collection of images with the previous images hidden within. They must choose best to their memory. There is a time limit to view and choose images. The players take turns and the one with the most matched images wins the round. 
 
 ## Rules
