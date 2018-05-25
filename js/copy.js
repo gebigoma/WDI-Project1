@@ -62,7 +62,7 @@ function shuffleAllImages() {
 }
 
 function showCard(name, url, animation = 'fade-in', width, height) {
-    var $imageElement = $('<img>');
+    var $imageElement = $('<img>')
     $imageElement.attr("src", url)
     $imageElement.attr("data-name", name)
     $imageElement.width(200) 
@@ -126,7 +126,7 @@ function countDownEntireDeck() {
 }
 
 function startTurn() {
-  var shuffleAll = shuffle(allImages);
+  var shuffleAll = shuffle(allImages)
   var slicedDeck = allImages.slice(0, 4);
   playerDeck(slicedDeck)
   var turn = setTimeout(function(){
@@ -140,9 +140,9 @@ function startGame(){
   $startText.hide()
   clearScoreAndTimer()
   $instructionsButton.hide()
-  $startButton.hide();
-  $playerTwoStartButton.hide();
-  startTurn();
+  $startButton.hide()
+  $playerTwoStartButton.hide()
+  startTurn()
 }
 
 var player1 = {
