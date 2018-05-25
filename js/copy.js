@@ -18,9 +18,10 @@ var allImages = [
   {name: "frog", cardImage: "https://goo.gl/c9hNsA"}, 
   {name: "pink-tree", cardImage: "https://goo.gl/Dq289z"},
   {name: "creepybanana", cardImage: "https://goo.gl/1LcxSQ"},
- 
+
 ]
 
+var $music = $('#music')
 let cardsInPlay;
 var $startText = $('#start-text')
 var $instructionsButton = $('button.instructions')
@@ -135,12 +136,12 @@ function startTurn() {
 }
 
 function startGame(){
+  // $music.play()
   $startText.hide()
   clearScoreAndTimer()
   $instructionsButton.hide()
   $startButton.hide();
   $playerTwoStartButton.hide();
-  // debugger
   startTurn();
 }
 
