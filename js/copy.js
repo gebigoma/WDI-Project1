@@ -46,12 +46,15 @@ $instructionsButton.click(function(evt) {
 
 function shuffle(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
-  while (0 !== currentIndex) {
-  randomIndex = Math.floor(Math.random() * currentIndex);
-  currentIndex -= 1;
-  temporaryValue = array[currentIndex];
-  array[currentIndex] = array[randomIndex];
-  array[randomIndex] = temporaryValue;
+  // while there remain elements to shuffle
+  while (currentIndex) {
+    //  pick a remaining element
+    randomIndex = Math.floor(Math.random() * currentIndex--);
+    // and swap it with the current element
+    // use the back of the array to store the shuffled elements and the front of the array to store the remaining elements
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
   }
   return array;
 }
