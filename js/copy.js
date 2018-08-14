@@ -44,17 +44,24 @@ $instructionsButton.click(function(evt) {
   $startText.fadeToggle('slow', 'linear')
 })
 
+// fisher-yates shuffle algorithim
+// loop from back to 1 bypassing index position 0
+// start with last index, generate random number 
+// between ie. last index and 0, ex.3, swap with last index, 
+// next do 0 and 2nd to last index, ex 1 swap with index 2nd to last
 function shuffle(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
   // while there remain elements to shuffle
-  while (currentIndex) {
+  // --i > 0, decrement from 0, first is 7
+  while (--currentIndex > 0) {
     //  pick a remaining element
-    randomIndex = Math.floor(Math.random() * currentIndex--);
+    randomIndex = Math.floor(Math.random() * (currentIndex + 1));
     // and swap it with the current element
-    // use the back of the array to store the shuffled elements and the front of the array to store the remaining elements
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
+    // use the back of the array to store the shuffled elements 
+    // and the front of the array to store the remaining elements
+    temporaryValue = array[randomIndex];
+    array[randomIndex] = array[currentIndex];
+    array[currentIndex] = temporaryValue;
   }
   return array;
 }
