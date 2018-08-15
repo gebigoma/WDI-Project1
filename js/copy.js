@@ -16,12 +16,11 @@ var allImages = [
   {name: "creepy-dolls", cardImage: "https://goo.gl/apWhkN"},
   {name: "frog", cardImage: "https://goo.gl/c9hNsA"}, 
   {name: "pink-tree", cardImage: "https://goo.gl/Dq289z"},
-  {name: "creepybanana", cardImage: "https://goo.gl/1LcxSQ"},
-
+  {name: "creepybanana", cardImage: "https://goo.gl/1LcxSQ"}
 ]
 
+// define all the variables
 var $music = new Audio("audio/06 Mister Sandman.mp3")
-let cardsInPlay;
 var $startText = $('#start-text')
 var $instructionsButton = $('button.instructions')
 var $startButton = $('.start-game')
@@ -32,13 +31,17 @@ var $timer = $('#timer')
 var $score = $('#score')
 var $currentPlayer = $('#current-player')
 var scoreBoard = 0
+// var cardsInPlay;
 
+// hide game display initally
 $startText.hide()
 $timer.hide()
 $score.hide()
 $playerTwoStartButton.hide()
 
+// function when instruction button is clicked
 $instructionsButton.click(function(evt) {
+// prevents any default behavior from the browser when event happens
   evt.preventDefault()
   $startText.not($startText).hide()
   $startText.fadeToggle('slow', 'linear')
@@ -70,13 +73,16 @@ function shuffleAllImages() {
   shuffle(allImages);
 }
 
+// show the cards when player 1 starts
 function showCard(name, url, animation = 'fade-in', width, height) {
+// reference the element with jquery
     var $imageElement = $('<img>')
     $imageElement.attr("src", url)
     $imageElement.attr("data-name", name)
     $imageElement.width(200) 
     $imageElement.height(200)
     $container.append($imageElement)
+    // add class "card" and animation
     $('img').addClass(['card', animation])
 }
 
@@ -84,24 +90,34 @@ function removeAllCards () {
   $('.card').remove()
 }
 
+// cards are not clickable before this function
 function activateCards () {
+// on click do this function
   $('.card').on("click", function(){
+// if total selected cards is less than cards in play and this has class
     if($('.selected').length < cardsInPlay.length && !$(this).hasClass('selected')) {
+//  add it
       $(this).addClass('selected')
     } else {
+//  otherwise remove it
       $(this).removeClass('selected')
     }
   })
 }
 
+// slicedDeck is the deck the player is first presented with
 function playerDeck(slicedDeck) {
+  //  empty array to hold cards
   cardsInPlay = [];
+  //  loop through slicedDeck
   for (var i = 0; i < slicedDeck.length; i += 1) {
+  // add sliced deck by the name to cards in play
     cardsInPlay.push(slicedDeck[i].name);
     showCard(slicedDeck[i].name, slicedDeck[i].cardImage, 'stretch')
   }
 }
 
+// shuffle entire deckand show
 function entireDeck() {
   var shuffleAll = shuffle(allImages)
   for(var i = 0; i < shuffleAll.length; i += 1) {
@@ -109,9 +125,35 @@ function entireDeck() {
   }
 }
 
+// start game
+function startGame(){
+  $music.play()
+  $startText.hide()
+  clearScoreAndTimer()
+  $instructionsButton.hide()
+  $startButton.hide()
+  $playerTwoStartButton.hide()
+  startTurn()
+}
+
+// start turn
+function startTurn() {
+  var shuffleAll = shuffle(allImages)
+  var slicedDeck = allImages.slice(0, 4);
+  playerDeck(slicedDeck)
+  var turn = setTimeout(function(){
+    removeAllCards()
+    countDownEntireDeck(shuffleAll)
+  }, 8000)
+}
+
+// show player the deck to choose from
 function countDownEntireDeck() { 
+// set the counter
   var counter = 10;
+// shuffle deck
   entireDeck()
+// make cards clickable
   activateCards()
   $timer.show()
   var countDown = setInterval(
@@ -119,8 +161,9 @@ function countDownEntireDeck() {
       counter --
       $timer.html(`${counter} seconds`)
       if(counter === 0) {
-        clearInterval(countDown)        
-        $('.card.selected').each(function(idx, card) {
+        clearInterval(countDown)   
+        // jquery iterator
+        $('.card.selected').each(function(index, card) {
           var cardName = $(card).attr('data-name')
           if(cardsInPlay.includes(cardName)) {
             increaseScore()
@@ -134,25 +177,6 @@ function countDownEntireDeck() {
     }, 1000)
 }
 
-function startTurn() {
-  var shuffleAll = shuffle(allImages)
-  var slicedDeck = allImages.slice(0, 4);
-  playerDeck(slicedDeck)
-  var turn = setTimeout(function(){
-    removeAllCards()
-    countDownEntireDeck(shuffleAll)
-  }, 8000)
-}
-
-function startGame(){
-  $music.play()
-  $startText.hide()
-  clearScoreAndTimer()
-  $instructionsButton.hide()
-  $startButton.hide()
-  $playerTwoStartButton.hide()
-  startTurn()
-}
 
 var player1 = {
   name: "Player 1",
