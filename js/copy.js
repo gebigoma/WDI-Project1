@@ -117,7 +117,7 @@ function playerDeck(slicedDeck) {
   }
 }
 
-// shuffle entire deckand show
+// shuffle entire deck and show
 function entireDeck() {
   var shuffleAll = shuffle(allImages)
   for(var i = 0; i < shuffleAll.length; i += 1) {
@@ -162,9 +162,10 @@ function countDownEntireDeck() {
       $timer.html(`${counter} seconds`)
       if(counter === 0) {
         clearInterval(countDown)   
-        // jquery iterator
+        // iteratate through the cards selected 
         $('.card.selected').each(function(index, card) {
           var cardName = $(card).attr('data-name')
+          // if cards in play includes the card name increase score
           if(cardsInPlay.includes(cardName)) {
             increaseScore()
           }
